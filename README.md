@@ -48,9 +48,17 @@ We now host a set of containers in a public repository. You can find details abo
 [here](REGISTRY.MD). You can now run these containers without building them. For example:
 
 ```sh
+# method 1
 docker run \
   -e ADBKEY="$(cat ~/.android/adbkey)" \
   --device /dev/kvm \
+  --publish 8554:8554/tcp \
+  --publish 5555:5555/tcp  \
+  us-docker.pkg.dev/android-emulator-268719/images/30-google-x64:30.1.2
+# method 2
+docker run \
+  -e ADBKEY="$(cat ~/.android/adbkey)" \
+  --privileged \
   --publish 8554:8554/tcp \
   --publish 5555:5555/tcp  \
   us-docker.pkg.dev/android-emulator-268719/images/30-google-x64:30.1.2
@@ -77,6 +85,7 @@ localhost:5555 device
 If you wish to use this in a script you could do the following:
 
 ```sh
+#########
 docker run -d \
   -e ADBKEY="$(cat ~/.android/adbkey)" \
   --device /dev/kvm \
@@ -87,6 +96,15 @@ docker run -d \
   adb wait-for-device
 
   # The device is now booting, or close to be booted
+#########
+docker run -d \
+  -e ADBKEY="$(cat ~/.android/adbkey)" \
+  --privileged \
+  --publish 8554:8554/tcp \
+  --publish 5555:5555/tcp  \
+  us-docker.pkg.dev/android-emulator-268719/images/30-google-x64:30.1.2
+  adb connect localhost:5555
+  adb wait-for-device
 
 ```
 
