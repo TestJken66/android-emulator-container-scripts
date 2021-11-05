@@ -85,7 +85,7 @@ localhost:5555 device
 If you wish to use this in a script you could do the following:
 
 ```sh
-#########
+###########################
 docker run -d \
   -e ADBKEY="$(cat ~/.android/adbkey)" \
   --device /dev/kvm \
@@ -96,7 +96,7 @@ docker run -d \
   adb wait-for-device
 
   # The device is now booting, or close to be booted
-#########
+###########################
 docker run -d \
   -e ADBKEY="$(cat ~/.android/adbkey)" \
   --privileged \
@@ -105,10 +105,60 @@ docker run -d \
   us-docker.pkg.dev/android-emulator-268719/images/30-google-x64:30.1.2
   adb connect localhost:5555
   adb wait-for-device
+###########################
+docker run -d -e ADBKEY="$(cat ~/.android/adbkey)" --privileged --publish 8554:8554/tcp --publish 5555:5555/tcp  us-docker.pkg.dev/android-emulator-268719/images/30-google-x64:latest
 
+adb connect localhost:5555
+adb wait-for-device
 ```
 
 A more detailed script can be found in [run-in-script-example.sh](./run-in-script-example.sh).
+
+* images
+
+``` bash
+us-docker.pkg.dev/android-emulator-268719/images/26-aosp-x64
+us-docker.pkg.dev/android-emulator-268719/images/26-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/27-aosp-x64
+us-docker.pkg.dev/android-emulator-268719/images/28-aosp-x64
+us-docker.pkg.dev/android-emulator-268719/images/28-aosp-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/28-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/28-google-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64
+us-docker.pkg.dev/android-emulator-268719/images/28-playstore-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/29-aosp-x64
+us-docker.pkg.dev/android-emulator-268719/images/29-aosp-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/29-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/29-google-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/29-playstore-x64
+us-docker.pkg.dev/android-emulator-268719/images/29-playstore-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/30-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/30-google-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/30-playstore-x64
+us-docker.pkg.dev/android-emulator-268719/images/30-playstore-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/p-playstore-x64
+us-docker.pkg.dev/android-emulator-268719/images/p-playstore-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/q-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/q-google-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/r-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/r-google-x64-no-metrics
+us-docker.pkg.dev/android-emulator-268719/images/sys-26-aosp-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-26-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-27-aosp-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-28-aosp-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-28-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-28-playstore-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-28-tv-x86
+us-docker.pkg.dev/android-emulator-268719/images/sys-28-tv-x86
+us-docker.pkg.dev/android-emulator-268719/images/sys-29-aosp-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-29-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-29-playstore-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-29-tv-x86
+us-docker.pkg.dev/android-emulator-268719/images/sys-30-google-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-30-google-x86
+us-docker.pkg.dev/android-emulator-268719/images/sys-30-playstore-x64
+us-docker.pkg.dev/android-emulator-268719/images/sys-30-playstore-x86
+```
 
 # Install in a virtual environment
 
