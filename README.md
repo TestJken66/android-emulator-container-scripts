@@ -115,6 +115,7 @@ adb wait-for-device
 A more detailed script can be found in [run-in-script-example.sh](./run-in-script-example.sh).
 
 * images
+> https://console.cloud.google.com/artifacts/docker/android-emulator-268719/us/images
 
 ``` bash
 us-docker.pkg.dev/android-emulator-268719/images/26-aosp-x64
